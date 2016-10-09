@@ -22,7 +22,7 @@ def get_delta_time(last_commit):
     delta = now - last_commit
     return delta.days
 
-@sched.scheduled_job('cron', day_of_week='mon-sun', hour=21)
+@sched.scheduled_job('cron', day_of_week='mon-sun', hour=14, as_user=True)
 def main():
     members = (
         # (git 계정 이름, repo 이름, 이름),
@@ -49,7 +49,7 @@ def main():
 
 @sched.scheduled_job('interval', minutes=10)
 def announce():
-    slack.chat.post_message(channels[1],'안녕 친구들 알고리즘 문제 풀 시간이야~')
+    slack.chat.post_message(channels[1],'안녕 친구들 알고리즘 문제 풀 시간이야~', as_user=True)
 
 sched.start()
 
