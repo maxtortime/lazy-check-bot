@@ -47,5 +47,9 @@ def main():
     post_to_channel('\n 안녕 친구들! 과제 점검하는 커밋벨이야 호호 \n' + '\n'.join(reports))
 
 
+@sched.scheduled_job('interval', minutes=10)
+def announce():
+    slack.post_to_channel(channels[1],'안녕 친구들 알고리즘 문제 풀 시간이야~')
+
 sched.start()
 
