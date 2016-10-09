@@ -49,7 +49,7 @@ def main():
 
 @sched.scheduled_job('interval', minutes=10)
 def announce():
-    slack.post_to_channel(channels[1],'안녕 친구들 알고리즘 문제 풀 시간이야~')
+    slack.chat.post_message(channels[1],'안녕 친구들 알고리즘 문제 풀 시간이야~')
 
 sched.start()
 
