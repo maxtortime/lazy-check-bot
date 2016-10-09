@@ -6,12 +6,13 @@ import pytz
 
 sched = BlockingScheduler()
 local_tz = pytz.timezone('Asia/Seoul')
-token = 'xoxb-89187600885-A7V1hrwM8dBN4VKBYUp0wyLP'
+with open('token.txt') as f:
+    token = f.read()
 slack = Slacker(token)
 channels = ['#_general', '#announcements']
 
 def post_to_channel(message):
-    slack.chat.post_message(channels[0], message, as_user=False)
+    slack.chat.post_message(channels[0], message, as_user=True)
 
 def get_repo_last_commit_delta_time(owner, repo):
     repo = github3.repository(owner, repo)
@@ -22,7 +23,7 @@ def get_delta_time(last_commit):
     delta = now - last_commit
     return delta.days
 
-@sched.scheduled_job('cron', day_of_week='mon-sun', hour=14, as_user=True)
+@sched.scheduled_job('cron', day_of_week='mon-sun', hour=14)
 def main():
     members = (
         # (git 계정 이름, repo 이름, 이름),
