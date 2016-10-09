@@ -1,12 +1,17 @@
 language: python
 python:
-    - "3.2"
-    - "3.3"
-    - "3.4"
-    - "3.5"
-    - "3.5-dev" # 3.5 development branch
-    - "nightly" # currently points to 3.6-dev
-# command to install dependencies
-install: "pip install -r requirements.txt"
-# command to run tests
+- '3.2'
+- '3.3'
+- '3.4'
+- '3.5'
+- 3.5-dev
+- nightly
+install: pip install -r requirements.txt
 script: nosetests
+deploy:
+  provider: heroku
+  api_key:
+    secure: NsWH8AtkblWTFElL3IMT/+GN/UEkMUMRKWTHklqMAKHBlci2zjtI7x9lQCMizeSuusjhoOtT2V8c4PiT3UhUt68oc/a6bbnFXJ28HEBmCx33Aj6H0cYZvqNMbhxgp7jiaEq11v43+1vTIaD2gsSXc06IDytc/FR5K24i6gPFJk+oZ8mdJAVoX2/Vz3ucOz8nf4bsDZJwOQ5Vkta76f7p9VJwEZVxaOO5Yq3oy/2PNam4DieRooRuRdhF0iHJgGU4yVYLopp2RnuZVrjtj6xx5DZqEveSOrFLLnQsUxCfq8eIEEhWJoywWR74r6mewDqx02MV1VVv7OZ/xroG9V4vvukc/edIm1vxhXkYS+cli8O9rIdsJc3v5cyrptQl6+66Kl8qpAGUrJAX2CoSfhz42itfpU+MXo6fh+zmJwF4I1O7BMDs3dbfE1W51GRkR3IVYFqsTmDTQ0ixZmX4FCE+0/TgBbuwMhajMPoqOFrIOjiHTZT3RJ2lqvsnbc0rTUD4xh614J0um6FWGAkrDgyiBzJOMRNkhfzbA4uHsl+zPK1gKRRjJAeh66LmnxBQu8PKnuFxt6NW500yQSn8UrOXcKE6Gl/fsBCmsuF+AEgmrE608m12cKcaoHfPezHF0JjSrQZJxmItjQaXixxnan8M0H0Rrt6KrLdUutuxlZ0jcjo=
+  app: agile-scrubland-55553
+  on:
+    repo: TrainingSet/lazy-check-bot
