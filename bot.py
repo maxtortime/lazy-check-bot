@@ -9,7 +9,6 @@ sched = BlockingScheduler()
 local_tz = pytz.timezone('Asia/Seoul')
 token = os.environ['SLACK_TOKEN']
 
-print(token)
 slack = Slacker(token)
 channels = ['#_general', '#announcements','#test_bot']
 
@@ -54,5 +53,6 @@ def main():
 def announce():
     slack.chat.post_message(channels[1],'안녕 친구들 알고리즘 문제 풀 시간이야~', as_user=True)
 
+sched.print_jobs()
 sched.start()
 
