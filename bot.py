@@ -12,8 +12,8 @@ token = os.environ['SLACK_TOKEN']
 slack = Slacker(token)
 channels = ['#_general', '#announcements','#test_bot']
 
-def post_to_channel(message):
-    slack.chat.post_message(channels[0], message, as_user=True)
+def post_to_channel(message, idx):
+    slack.chat.post_message(channels[idx], message, as_user=True)
 
 def get_repo_last_commit_delta_time(owner, repo):
     repo = github3.repository(owner, repo)
@@ -46,12 +46,17 @@ def main():
         else:
             reports.append('*%s* 님은 *%s* 일이나 커밋을 안하셨어요!' % (name, delta_time))
 
-    post_to_channel('\n 안녕 친구들! 과제 점검하는 커밋벨이야 호호 \n' + '\n'.join(reports))
+    post_to_channel('\n 안녕 친구들! 과제 점검하는 커밋벨이야 호호 \n' + '\n'.join(reports), 0)
 
 
 @sched.scheduled_job('interval', hours=8)
 def announce():
-    slack.chat.post_message(channels[1],'안녕 친구들 알고리즘 문제 풀 시간이야~', as_user=True)
+    post_to_channel('안녕 친구들 알고리즘 문제 풀 시간이야~', 1)
+
+
+@sched.scheduled_job('interval', minutes=1)
+def stil_alive():
+    post_to_channel("I'm still alive", 2)
 
 sched.start()
 
