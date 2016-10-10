@@ -53,6 +53,5 @@ def main():
 def announce():
     slack.chat.post_message(channels[1],'안녕 친구들 알고리즘 문제 풀 시간이야~', as_user=True)
 
-sched.print_jobs()
 sched.start()
 
