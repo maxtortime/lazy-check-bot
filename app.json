@@ -1,0 +1,7 @@
+{
+  "name": "lazy-check-bot",
+  "description": "lazy-check-bot can check commit frequency and send that information to slack channel",
+  "repository": "https://github.com/AjouTML/lazy-check-bot",
+  "logo": "https://avatars2.githubusercontent.com/u/22636678",
+  "keywords": ["python", "slack", "bot"]
+}
